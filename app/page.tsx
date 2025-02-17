@@ -3,6 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ChevronDown, Car, Calendar, Award, Users, Clock, ArrowRight, Phone, MapPin, Mail, CheckCircle2, ChevronLeft, ChevronRight, Instagram, Shield, Target, BookOpen } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,8 +15,26 @@ export default function Home() {
   const [showText, setShowText] = useState(false);
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showPreRegister, setShowPreRegister] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    category: ''
+  });
 
   const whatsappLink = "https://api.whatsapp.com/send/?phone=55929992845318&text=Olá,%20Vim%20através%20do%20site.%20Poderia%20me%20ajudar?&type=phone_number&app_absent=0";
+  const mapsLink = "https://www.google.com/maps/place/RM+Auto+Escola+Centro+De+Treinamento+-+Crespo/@-3.1297926,-59.9892042,17z/data=!3m1!4b1!4m6!3m5!1s0x926c05b51e957135:0xeab6a9acd44d253c!8m2!3d-3.1297926!4d-59.9892042!16s%2Fg%2F11sdvp9txs?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D";
+
+  const handlePreRegister = () => {
+    setShowPreRegister(false);
+    setFormData({
+      name: '',
+      phone: '',
+      email: '',
+      category: ''
+    });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,22 +79,22 @@ export default function Home() {
 
   const trainingImages = [
     {
-      src: "/img/campo1.jpg",
+      src: "/img/1.jpeg",
       alt: "Pista de treinamento",
       description: "Pista de treinamento com sinalização completa"
     },
     {
-      src: "/img/campo2.jpg",
+      src: "/img/2.jpeg",
       alt: "Frota de veículos",
       description: "Frota moderna e diversificada"
     },
     {
-      src: "/img/campo3.jpg",
+      src: "/img/3.jpeg",
       alt: "Treinamento prático",
       description: "Área de treinamento prático"
     },
     {
-      src: "/img/campo4.jpg",
+      src: "/img/4.jpeg",
       alt: "Estrutura",
       description: "Estrutura completa para seu aprendizado"
     }
@@ -166,9 +187,56 @@ export default function Home() {
     "Suporte personalizado"
   ];
 
+  const pricingPlans = [
+    {
+      title: "Primeira Habilitação A",
+      category: "Categoria A - Motocicleta",
+      prices: {
+        vista: "R$ 900,00",
+        boleto1: {
+          total: "R$ 1.200,00",
+          details: "R$400,00 + 2x R$400,00"
+        },
+        boleto2: {
+          total: "R$ 1.200,00",
+          details: "R$300,00 + 3x R$300,00"
+        }
+      }
+    },
+    {
+      title: "Primeira Habilitação AB",
+      category: "Categoria AB - Carro e Moto",
+      prices: {
+        vista: "R$ 1.750,00",
+        boleto1: {
+          total: "R$ 2.100,00",
+          details: "R$800,00 + 2x R$650,00"
+        },
+        boleto2: {
+          total: "R$ 2.100,00",
+          details: "R$525,00 + 3x R$525,00"
+        }
+      }
+    },
+    {
+      title: "Primeira Habilitação B",
+      category: "Categoria B - Carro",
+      prices: {
+        vista: "R$ 1.300,00",
+        boleto1: {
+          total: "R$ 1.520,00",
+          details: "R$600,00 + 2x R$460,00"
+        },
+        boleto2: {
+          total: "R$ 1.520,00",
+          details: "R$380,00 + 3x R$380,00"
+        }
+      }
+    }
+  ];
+
   return (
     <main className="bg-white">
-      {/* Navigation */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'bg-black/90 py-3 shadow-lg backdrop-blur-sm' : 'bg-transparent py-4'
       }`}>
@@ -178,7 +246,7 @@ export default function Home() {
               <span className="text-red-600">RM</span>
               <span className="text-yellow-400 ml-1 text-xs">AUTOESCOLA</span>
             </div>
-            <div className="flex items-center gap-8">
+            <div className="hidden md:flex items-center gap-8">
               <Link 
                 href="#inicio" 
                 className="text-white text-sm font-medium hover:text-red-500 transition-colors relative group"
@@ -218,7 +286,6 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <section id="inicio" className="relative h-screen flex items-center justify-center bg-black">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/60 z-10" />
@@ -233,17 +300,17 @@ export default function Home() {
           </div>
         </div>
         <div className="relative z-20 text-center text-white px-4 max-w-5xl mx-auto">
-          <h1 className="text-2xl font-light mb-4 tracking-wider text-yellow-400 fade-in">
+          <h1 className="text-xl md:text-2xl font-light mb-4 tracking-wider text-yellow-400 fade-in">
             [ NA RM AUTOESCOLA VOCÊ CONCLUI SEU ]
           </h1>
-          <div className="flex items-center justify-center gap-6 text-7xl font-bold overflow-hidden">
+          <div className="flex items-center justify-center gap-6 text-4xl md:text-7xl font-bold overflow-hidden">
             <div className="flex gap-4 items-center">
               <span className="word-animation word-animation-delay-1">processo</span>
               <span className="word-animation word-animation-delay-2">em</span>
               <span className="text-red-600 ml-6 slide-in">90 dias</span>
             </div>
           </div>
-          <div className="flex gap-4 justify-center mt-12">
+          <div className="flex flex-col md:flex-row gap-4 justify-center mt-12">
             <Button
               size="lg"
               className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-6 text-lg transition-transform hover:scale-105"
@@ -255,7 +322,7 @@ export default function Home() {
               size="lg"
               variant="outline"
               className="bg-white/10 backdrop-blur-sm text-white border-white/20 hover:bg-white/20 rounded-full px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
-              onClick={() => window.open(whatsappLink, '_blank')}
+              onClick={() => setShowPreRegister(true)}
             >
               Pré cadastro
             </Button>
@@ -270,7 +337,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Quem Somos Section */}
+      <Dialog open={showPreRegister} onOpenChange={setShowPreRegister}>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Escolha uma das nossas categorias</DialogTitle>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <Input
+              placeholder="Nome Completo*"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            />
+            <Input
+              placeholder="Telefone/Whatsapp*"
+              value={formData.phone}
+              onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            />
+            <Input
+              placeholder="Email*"
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            />
+            <Select
+              value={formData.category}
+              onValueChange={(value) => setFormData({ ...formData, category: value })}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Selecione A Categoria" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="moto">Categoria A - Moto</SelectItem>
+                <SelectItem value="carro">Categoria B - Carro</SelectItem>
+                <SelectItem value="carro-moto">Categoria A/B - Carro/Moto</SelectItem>
+                <SelectItem value="onibus">Categoria D - Ônibus</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button 
+              className="w-full bg-red-600 hover:bg-red-700 text-white"
+              onClick={handlePreRegister}
+            >
+              Enviar
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <section className="py-24 bg-white overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -337,7 +449,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Centro de Treinamento Section */}
       <section className="py-24 bg-white text-gray-900 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white opacity-50" />
         
@@ -461,7 +572,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Process Steps Section */}
       <section id="processo" className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -502,7 +612,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -536,60 +645,56 @@ export default function Home() {
               className="bg-red-600 hover:bg-red-700 text-white rounded-full px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
               onClick={() => window.open(whatsappLink, '_blank')}
             >
-              Fale Conosco
-            </Button>
+              Fale Conosco </Button>
           </div>
         </div>
       </section>
 
-      {/* Serviços Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <span className="inline-block px-4 py-2 bg-red-50 rounded-full text-red-600 text-sm font-medium mb-4">
-              Nossos Serviços
-            </span>
-            <h2 className="text-4xl font-bold mb-6">Escolha seu curso</h2>
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg">
+            <h2 className="text-3xl font-bold mb-4">Escolha seu curso</h2>
+            <p className="text-gray-600">
               Oferecemos diferentes categorias de habilitação para atender suas necessidades
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Categoria A */}
-            <div className="group">
-              <Card className="relative bg-white border border-gray-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="absolute -top-4 left-6">
-                  <div className="bg-red-50 p-2 rounded-lg">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {pricingPlans.map((plan, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-4">
                     <Car className="w-6 h-6 text-red-600" />
+                    <div>
+                      <h3 className="text-lg font-bold">{plan.title}</h3>
+                      <p className="text-sm text-gray-600">{plan.category}</p>
+                    </div>
                   </div>
-                </div>
-                <div className="pt-4">
-                  <h3 className="text-xl font-bold mb-2">Primeira Habilitação A</h3>
-                  <p className="text-gray-600 text-sm mb-6">Categoria A - Motocicleta</p>
-                  
+
                   <div className="space-y-4">
                     <div>
-                      <p className="text-sm text-gray-600 mb-1">À VISTA</p>
-                      <p className="text-3xl font-bold text-gray-900">R$ 900,00</p>
+                      <p className="text-sm text-gray-600">À VISTA</p>
+                      <p className="text-2xl font-bold">{plan.prices.vista}</p>
                     </div>
 
                     <div className="border-t pt-4">
-                      <p className="text-sm text-gray-600 mb-1">BOLETO 1 + 2</p>
-                      <p className="text-xl font-semibold text-gray-900">R$ 1.200,00</p>
-                      <p className="text-sm text-gray-500">R$400,00 + 2x R$400,00</p>
+                      <p className="text-sm text-gray-600">BOLETO 1 + 2</p>
+                      <p className="text-xl font-semibold">{plan.prices.boleto1.total}</p>
+                      <p className="text-sm text-gray-500">{plan.prices.boleto1.details}</p>
                     </div>
 
                     <div className="border-t pt-4">
-                      <p className="text-sm text-gray-600 mb-1">BOLETO 1 + 3</p>
-                      <p className="text-xl font-semibold text-gray-900">R$ 1.200,00</p>
-                      <p className="text-sm text-gray-500">R$300,00 + 3x R$300,00</p>
+                      <p className="text-sm text-gray-600">BOLETO 1 + 3</p>
+                      <p className="text-xl font-semibold">{plan.prices.boleto2.total}</p>
+                      <p className="text-sm text-gray-500">{plan.prices.boleto2.details}</p>
                     </div>
 
                     <div className="border-t pt-4">
-                      <p className="text-sm text-gray-600 mb-1">CARTÃO</p>
-                      <p className="text-lg font-semibold text-gray-900">ATÉ 12X COM JUROS</p>
-                      <p className="text-xs text-gray-500 mt-1">Não incluso taxas DETRAN, CLÍNICA, LADV e TOXICOLÓGICO</p>
+                      <p className="text-sm text-gray-600">CARTÃO</p>
+                      <p className="text-base font-semibold">ATÉ 12X COM JUROS</p>
+                      <p className="text-xs text-gray-500 mt-1">
+                        Não incluso taxas DETRAN, CLÍNICA, LADV e TOXICOLÓGICO
+                      </p>
                     </div>
                   </div>
 
@@ -600,108 +705,14 @@ export default function Home() {
                     Saiba Mais
                   </Button>
                 </div>
-              </Card>
-            </div>
-
-            {/* Categoria AB */}
-            <div className="group">
-              <Card className="relative bg-white border border-gray-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="absolute -top-4 left-6">
-                  <div className="bg-red-50 p-2 rounded-lg">
-                    <Car className="w-6 h-6 text-red-600" />
-                  </div>
-                </div>
-                <div className="pt-4">
-                  <h3 className="text-xl font-bold mb-2">Primeira Habilitação AB</h3>
-                  <p className="text-gray-600 text-sm mb-6">Categoria AB - Carro e Moto</p>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-sm text-gray-600 mb-1">À VISTA</p>
-                      <p className="text-3xl font-bold text-gray-900">R$ 1.750,00</p>
-                    </div>
-
-                    <div className="border-t pt-4">
-                      <p className="text-sm text-gray-600 mb-1">BOLETO 1 + 2</p>
-                      <p className="text-xl font-semibold text-gray-900">R$ 2.100,00</p>
-                      <p className="text-sm text-gray-500">R$800,00 + 2x R$650,00</p>
-                    </div>
-
-                    <div className="border-t pt-4">
-                      <p className="text-sm text-gray-600 mb-1">BOLETO 1 + 3</p>
-                      <p className="text-xl font-semibold text-gray-900">R$ 2.100,00</p>
-                      <p className="text-sm text-gray-500">R$525,00 + 3x R$525,00</p>
-                    </div>
-
-                    <div className="border-t pt-4">
-                      <p className="text-sm text-gray-600 mb-1">CARTÃO</p>
-                      <p className="text-lg font-semibold text-gray-900">ATÉ 12X COM JUROS</p>
-                      <p className="text-xs text-gray-500 mt-1">Não incluso taxas DETRAN, CLÍNICA, LADV e TOXICOLÓGICO</p>
-                    </div>
-                  </div>
-
-                  <Button 
-                    className="w-full mt-6 bg-red-600 hover:bg-red-700 text-white"
-                    onClick={() => window.open(whatsappLink, '_blank')}
-                  >
-                    Saiba Mais
-                  </Button>
-                </div>
-              </Card>
-            </div>
-
-            {/* Categoria B */}
-            <div className="group">
-              <Card className="relative bg-white border border-gray-100 p-6 shadow-lg hover:shadow-xl transition-all duration-300">
-                <div className="absolute -top-4 left-6">
-                  <div className="bg-red-50 p-2 rounded-lg">
-                    <Car className="w-6 h-6 text-red-600" />
-                  </div>
-                </div>
-                <div className="pt-4">
-                  <h3 className="text-xl font-bold mb-2">Primeira Habilitação B</h3>
-                  <p className="text-gray-600 text-sm mb-6">Categoria B - Carro</p>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-sm text-gray-600 mb-1">À VISTA</p>
-                      <p className="text-3xl font-bold text-gray-900">R$ 1.300,00</p>
-                    </div>
-
-                    <div className="border-t pt-4">
-                      <p className="text-sm text-gray-600 mb-1">BOLETO 1 + 2</p>
-                      <p className="text-xl font-semibold text-gray-900">R$ 1.520,00</p>
-                      <p className="text-sm text-gray-500">R$600,00 + 2x R$460,00</p>
-                    </div>
-
-                    <div className="border-t pt-4">
-                      <p className="text-sm text-gray-600 mb-1">BOLETO 1 + 3</p>
-                      <p className="text-xl font-semibold text-gray-900">R$ 1.520,00</p>
-                      <p className="text-sm text-gray-500">R$380,00 + 3x R$380,00</p>
-                    </div>
-
-                    <div className="border-t pt-4">
-                      <p className="text-sm text-gray-600 mb-1">CARTÃO</p>
-                      <p className="text-lg font-semibold text-gray-900">ATÉ 12X COM JUROS</p>
-                      <p className="text-xs text-gray-500 mt-1">Não incluso taxas DETRAN, CLÍNICA, LADV e TOXICOLÓGICO</p>
-                    </div>
-                  </div>
-
-                  <Button 
-                    className="w-full mt-6 bg-red-600 hover:bg-red-700 text-white"
-                    onClick={() => window.open(whatsappLink, '_blank')}
-                  >
-                    Saiba Mais
-                  </Button>
-                </div>
-              </Card>
-            </div>
+              </div>
+            ))}
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-gray-600">Dúvidas sobre nossos serviços?</p>
+            <p className="text-gray-600 mb-4">Dúvidas sobre nossos serviços?</p>
             <Button 
-              className="mt-4 bg-gray-900 hover:bg-gray-800 text-white"
+              className="bg-gray-900 hover:bg-gray-800 text-white"
               onClick={() => window.open(whatsappLink, '_blank')}
             >
               Fale Conosco
@@ -710,7 +721,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contato" className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -730,7 +740,7 @@ export default function Home() {
               
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
-                  <MapPin className="text-red-600 w-5 h-5 mt-1" />
+                  <MapPin className="text-red-600 w-5 h-5 mt-1 flex-shrink-0" />
                   <div>
                     <p className="font-medium">Avenida Tefé, 988</p>
                     <p className="text-gray-600">Japiim, Manaus - AM, 69078000</p>
@@ -738,7 +748,7 @@ export default function Home() {
                 </div>
                 
                 <div className="flex items-center gap-3">
-                  <Phone className="text-red-600 w-5 h-5" />
+                  <Phone className="text-red-600 w-5 h-5 flex-shrink-0" />
                   <div>
                     <p className="font-medium">(92) 99284-5318</p>
                     <p className="text-gray-600">Horário comercial</p>
@@ -746,7 +756,7 @@ export default function Home() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <Clock className="text-red-600 w-5 h-5" />
+                  <Clock className="text-red-600 w-5 h-5 flex-shrink-0" />
                   <div>
                     <p className="font-medium">08:00 - 18:00</p>
                     <p className="text-gray-600">Segunda à Sexta</p>
@@ -754,7 +764,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-8">
+              <div className="mt-6 md:mt-8">
                 <Button 
                   className="w-full bg-red-600 hover:bg-red-700 text-white"
                   onClick={() => window.open(whatsappLink, '_blank')}
@@ -764,18 +774,18 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative rounded-2xl overflow-hidden h-[400px]">
+            <div className="relative rounded-2xl overflow-hidden h-[300px] md:h-[400px]">
               <Image
-                src="/img/campo1.jpg"
+                src="/img/1.jpeg"
                 alt="Localização RM Autoescola"
                 fill
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
                 <Button 
                   className="w-full bg-white hover:bg-gray-100 text-gray-900"
-                  onClick={() => window.open('https://maps.app.goo.gl/HGKoL8BgWQZSbqYS7', '_blank')}
+                  onClick={() => window.open(mapsLink, '_blank')}
                 >
                   Como Chegar
                 </Button>
