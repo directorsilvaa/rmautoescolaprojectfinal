@@ -23,7 +23,7 @@ export default function Home() {
     category: ''
   });
 
-  const whatsappLink = "https://api.whatsapp.com/send/?phone=559292845318&text=Olá,%20Vim%20através%20do%20site.%20Poderia%20me%20ajudar?&type=phone_number&app_absent=0;
+  const whatsappLink = "https://api.whatsapp.com/send/?phone=559292845318&text=Olá,%20Vim%20através%20do%20site.%20Poderia%20me%20ajudar?&type=phone_number&app_absent=0"
   const mapsLink = "https://www.google.com/maps/place/RM+Auto+Escola+Centro+De+Treinamento+-+Crespo/@-3.1297926,-59.9892042,17z/data=!3m1!4b1!4m6!3m5!1s0x926c05b51e957135:0xeab6a9acd44d253c!8m2!3d-3.1297926!4d-59.9892042!16s%2Fg%2F11sdvp9txs?entry=ttu&g_ep=EgoyMDI1MDIxMi4wIKXMDSoASAFQAw%3D%3D";
 
   const handlePreRegister = () => {
