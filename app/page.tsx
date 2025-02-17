@@ -154,7 +154,7 @@ export default function Home() {
     {
       icon: Shield,
       title: "Credibilidade",
-      description: "15 anos de experiência e mais de 1.500 alunos formados"
+      description: "+ 4 anos de experiência e mais de 1.500 alunos formados"
     },
     {
       icon: Target,
@@ -174,7 +174,7 @@ export default function Home() {
   ];
 
   const achievements = [
-    { number: "1.5k+", label: "Alunos Formados" },
+    { number: "7.5k+", label: "Alunos Formados" },
     { number: "15+", label: "Anos de Experiência" },
     { number: "98%", label: "Taxa de Aprovação" },
     { number: "100%", label: "Satisfação" }
@@ -409,7 +409,7 @@ export default function Home() {
                   Sua jornada para a habilitação começa aqui
                 </h2>
                 <p className="text-gray-600 text-lg">
-                  Há mais de 15 anos, a RM Autoescola tem sido referência em formação de condutores. 
+                  Há mais de 4 anos, a RM Autoescola tem sido referência em formação de condutores. 
                   Nossa missão é proporcionar um aprendizado seguro, eficiente e personalizado, 
                   garantindo que cada aluno alcance seus objetivos com excelência.
                 </p>
