@@ -461,8 +461,10 @@ export default function Home() {
               Centro de Treinamento
             </h2>
             <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-              Nossa estrutura é projetada para oferecer a melhor experiência de aprendizado, 
-              com pistas sinalizadas, frota moderna e ambiente seguro para sua formação.
+             Nossa autoescola possui centro de treinamento próprio, 
+             amplo espaçoso e ideal que vai te proporcionar a tão almejada aprovação. 🚀🚀🚀.
+
+              Faça parte do autoescola que mais aprova em Manaus!
             </p>
           </div>
 
