@@ -776,7 +776,7 @@ export default function Home() {
 
             <div className="relative rounded-2xl overflow-hidden h-[300px] md:h-[400px]">
               <Image
-                src="/img/1.jpeg"
+                src="/img/fachada.png"
                 alt="Localização RM Autoescola"
                 fill
                 className="object-cover"
