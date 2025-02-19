@@ -591,7 +591,8 @@ export default function Home() {
 
           {/* Bottom Footer */}
           <div className="border-t border-gray-800 py-8 text-center text-gray-400 text-sm">
-            <p>&copy; {new Date().getFullYear()} RM Autoescola. Todos os direitos reservados.</p>
+            <p>&copy; {new Date().getFullYear()} RM Autoescola CNPJ 42.244.689/0001-40 ,
+ Todos os direitos reservados .</p>
           </div>
         </div>
       </footer>
